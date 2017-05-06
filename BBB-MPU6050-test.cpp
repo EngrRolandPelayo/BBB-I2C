@@ -58,6 +58,10 @@ int main(){
 	while(true){
 		char str1[100];
 		char str2[100];
+		char str3[100];
+		char str4[100];
+		char str5[100];
+		char str6[100];
 		strcpy(str1,cmdGet); //str1 = i2cget -y 2
 		strcat(str1,deviceADDR); //str1 = i2cget -y 2 0x68 
 		strcat(str1,ACCEL_X_OUT_H); //str1 = i2cget -y 2 0x68 0x3B
@@ -65,8 +69,22 @@ int main(){
 		strcat(str2,deviceADDR); //str1 = i2cget -y 2 0x68 
 		strcat(str2,ACCEL_X_OUT_L); //str1 = i2cget -y 2 0x68 0x3B
 		accel_x = stoi(exec(str1), nullptr, 16) << 8 + stoi(exec(str2), nullptr, 16);
-		cout << accel_x << endl;
-	}
-	
+		strcpy(str3,cmdGet); //str1 = i2cget -y 2
+		strcat(str3,deviceADDR); //str1 = i2cget -y 2 0x68 
+		strcat(str3,ACCEL_Y_OUT_H); //str1 = i2cget -y 2 0x68 0x3B
+		strcpy(str4,cmdGet); //str1 = i2cget -y 2
+		strcat(str4,deviceADDR); //str1 = i2cget -y 2 0x68 
+		strcat(str4,ACCEL_Y_OUT_L); //str1 = i2cget -y 2 0x68 0x3B
+		accel_y = stoi(exec(str3), nullptr, 16) << 8 + stoi(exec(str4), nullptr, 16);
+		strcpy(str5,cmdGet); //str1 = i2cget -y 2
+		strcat(str5,deviceADDR); //str1 = i2cget -y 2 0x68 
+		strcat(str5,ACCEL_Z_OUT_H); //str1 = i2cget -y 2 0x68 0x3B
+		strcpy(str6,cmdGet); //str1 = i2cget -y 2
+		strcat(str6,deviceADDR); //str1 = i2cget -y 2 0x68 
+		strcat(str6,ACCEL_Z_OUT_L); //str1 = i2cget -y 2 0x68 0x3B
+		accel_z = stoi(exec(str5), nullptr, 16) << 8 + stoi(exec(str6), nullptr, 16);
+		cout << "X-Accel: " << accel_x << " Y-Accel: " << accel_y << " Z-Accel: " << accel_z << endl;
+
+
 	return 0;
 }
