@@ -17,7 +17,7 @@ int16_t gyro_y;
 int16_t gyro_z;
 
 const char* deviceADDR = " 0x68";
-const char* PWR_MGMT_1 = " 0x6B ";
+const char* PWR_MGMT_1 = " 0x6B";
 const char* ACCEL_X_OUT_H = " 0x3B ";
 const char* ACCEL_X_OUT_L = " 0x3C ";
 const char* ACCEL_Y_OUT_H = " 0x3D ";
@@ -62,6 +62,10 @@ int main(){
 		char str4[100];
 		char str5[100];
 		char str6[100];
+		char str0[100];
+		strcpy(str0,cmdSet);
+		strcat(str0,deviceADDR);
+		strcat(str0,PWR_MGMT_1);
 		strcpy(str1,cmdGet); //str1 = i2cget -y 2
 		strcat(str1,deviceADDR); //str1 = i2cget -y 2 0x68 
 		strcat(str1,ACCEL_X_OUT_H); //str1 = i2cget -y 2 0x68 0x3B
@@ -85,6 +89,6 @@ int main(){
 		accel_z = stoi(exec(str5), nullptr, 16) << 8 + stoi(exec(str6), nullptr, 16);
 		cout << "X-Accel: " << accel_x << " Y-Accel: " << accel_y << " Z-Accel: " << accel_z << endl;
 
-
+		}
 	return 0;
 }
